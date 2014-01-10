@@ -10,15 +10,15 @@ namespace Kyoki\OAuth2\Domain\Model;
  *                                                                        *
  *                                                                        */
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Domain\Model\OAuthClient;
 use Kyoki\OAuth2\Domain\Model\OAuthScope;
-use TYPO3\FLOW3\Security\Account;
+use TYPO3\Flow\Security\Account;
 
 /**
  * An OAuth consumer
  *
- * @FLOW3\Entity
+ * @Flow\Entity
  */
 class OAuthCode {
 	/**
@@ -28,7 +28,7 @@ class OAuthCode {
 	protected $oauthClient;
 
 	/**
-	 * @FLOW3\Identity
+	 * @Flow\Identity
 	 * @ORM\Id
 	 * @var string
 	 */
@@ -51,7 +51,7 @@ class OAuthCode {
 	protected $redirectUri;
 
 	/**
-	 * @var \TYPO3\FLOW3\Security\Account
+	 * @var \TYPO3\Flow\Security\Account
 	 * @ORM\ManyToOne
 	 */
 	protected $account;
@@ -65,7 +65,7 @@ class OAuthCode {
 
 	// TODO redirectURI as constructor parameter????
 	public function __construct(OAuthClient $OAuthClient, Account $account, OAuthScope $scope) {
-		$secret = sha1(bin2hex(\TYPO3\FLOW3\Utility\Algorithms::generateRandomBytes(96)));
+		$secret = sha1(bin2hex(\TYPO3\Flow\Utility\Algorithms::generateRandomBytes(96)));
 		$this->code = $secret;
 		$this->enabled = FALSE;
 		$this->setOauthClient($OAuthClient);
@@ -99,14 +99,14 @@ class OAuthCode {
 	}
 
 	/**
-	 * @param \TYPO3\FLOW3\Security\Account $account
+	 * @param \TYPO3\Flow\Security\Account $account
 	 */
 	protected function setAccount($account) {
 		$this->account = $account;
 	}
 
 	/**
-	 * @return \TYPO3\FLOW3\Security\Account
+	 * @return \TYPO3\Flow\Security\Account
 	 */
 	public function getAccount() {
 		return $this->account;

@@ -11,7 +11,7 @@ namespace Kyoki\OAuth2\Controller;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Domain\Model\OAuthClient;
 use Kyoki\OAuth2\Domain\Model\OAuthScope;
 use Kyoki\OAuth2\Domain\Model\OAuthCode;
@@ -22,7 +22,7 @@ use Kyoki\OAuth2\Controller\OAuthAbstractController;
  * OAuth controller for the Kyoki.OAuth2 package
  * Manages the permission request and exchanges an OAuth Code
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
 class OAuthController extends OAuthAbstractController {
 
@@ -32,22 +32,22 @@ class OAuthController extends OAuthAbstractController {
 	const RESPONSETYPE_CODE = 'code';
 
 	/**
-	 * @var \TYPO3\FLOW3\Security\Context
-	 * @FLOW3\Inject
+	 * @var \TYPO3\Flow\Security\Context
+	 * @Flow\Inject
 	 */
 	protected $securityContext;
 
 
 	/**
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthCodeRepository
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 */
 	protected $oauthCodeRepository;
 
 	/**
 	 * Authenticate and request permission
 	 *
-	 * @FLOW3\SkipCsrfProtection
+	 * @Flow\SkipCsrfProtection
 	 * @param string $response_type
 	 * @param Kyoki\OAuth2\Domain\Model\OAuthClient $client_id persistence identifier
 	 * @param string $redirect_uri

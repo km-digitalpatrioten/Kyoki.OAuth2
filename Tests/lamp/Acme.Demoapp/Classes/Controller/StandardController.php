@@ -6,25 +6,25 @@ namespace Acme\Demoapp\Controller;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Acme\Demoapp\Command\InitCommandController as InitCommandController;
 
 /**
  * Standard controller for the Acme.Demoapp package 
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\Context
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Context
 	 */
 	protected $securityContext;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
 	 */
 	protected $authenticationManager;
 
@@ -55,8 +55,8 @@ class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 
 		try {
 			$this->authenticationManager->authenticate();
-		} catch (\TYPO3\FLOW3\Security\Exception\AuthenticationRequiredException $exception) {
-			$this->flashMessageContainer->addMessage(new \TYPO3\FLOW3\Error\Message('Wrong username or password.'));
+		} catch (\TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception) {
+			$this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Message('Wrong username or password.'));
 			$this->redirect('login');
 		}
 		if ($interceptedRequest = $this->securityContext->getInterceptedRequest()) {

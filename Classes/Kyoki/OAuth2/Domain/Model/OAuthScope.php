@@ -10,18 +10,18 @@ namespace Kyoki\OAuth2\Domain\Model;
  *                                                                        *
  *                                                                        */
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * An OAuth consumer
  *
- * @FLOW3\Entity
+ * @Flow\Entity
  */
 class OAuthScope {
 	/**
-	 * @FLOW3\Identity
+	 * @Flow\Identity
 	 * @ORM\Id
-	 * @FLOW3\Validate(type="Text")
+	 * @Flow\Validate(type="Text")
 	 * @var string
 	 */
 	protected $id;

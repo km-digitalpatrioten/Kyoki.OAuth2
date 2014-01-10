@@ -10,13 +10,13 @@ namespace Kyoki\OAuth2\Domain\Model;
  *                                                                        *
  *                                                                        */
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Domain\Model\OAuthCode;
 
 /**
  * An OAuth consumer
  *
- * @FLOW3\Entity
+ * @Flow\Entity
  */
 class OAuthToken {
 
@@ -26,16 +26,16 @@ class OAuthToken {
 	const TOKENTYPE_BEARER = 'Bearer';
 
 	/**
-	 * @FLOW3\Identity
+	 * @Flow\Identity
 	 * @ORM\Id
 	 * @var string
-	 * @FLOW3\Validate(type="NotEmpty")
+	 * @Flow\Validate(type="NotEmpty")
 	 */
 	protected $accessToken;
 
 	/**
 	 * @var string
-	 * @FLOW3\Validate(type="NotEmpty")
+	 * @Flow\Validate(type="NotEmpty")
 	 */
 	protected $refreshToken;
 
@@ -63,9 +63,9 @@ class OAuthToken {
 
 
 	public function __construct(OAuthCode $OAuthCode, $expiresIn, $tokenType) {
-		$access = sha1(bin2hex(\TYPO3\FLOW3\Utility\Algorithms::generateRandomBytes(96)));
+		$access = sha1(bin2hex(\TYPO3\Flow\Utility\Algorithms::generateRandomBytes(96)));
 		$this->setAccessToken($access);
-		$refresh = sha1(bin2hex(\TYPO3\FLOW3\Utility\Algorithms::generateRandomBytes(96)));
+		$refresh = sha1(bin2hex(\TYPO3\Flow\Utility\Algorithms::generateRandomBytes(96)));
 		$this->setRefreshToken($refresh);
 		$this->setCreationDate(new \DateTime());
 		$this->setExpiresIn($expiresIn);

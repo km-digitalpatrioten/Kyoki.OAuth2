@@ -9,15 +9,15 @@ namespace Acme\Demoapp\Command;
  */
 
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Domain\Model\OAuthClient as OAuthClient;
 use Kyoki\OAuth2\Domain\Model\OAuthScope as OAuthScope;
 use Acme\Demoapp\Domain\Model\User as User;
 /**
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class InitCommandController extends \TYPO3\FLOW3\Cli\CommandController {
+class InitCommandController extends \TYPO3\Flow\Cli\CommandController {
 	const USERNAME = 'username';
 	const PASSWORD = 'password';
 	const ROLE = 'User';
@@ -25,25 +25,25 @@ class InitCommandController extends \TYPO3\FLOW3\Cli\CommandController {
 	const CLIENT_SECRET = 'SSSSSSSSSSSSSSS';
 	const SCOPE = 'myscope';
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\AccountRepository
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\AccountRepository
 	 */
 	protected $accountRepository;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\AccountFactory
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\AccountFactory
 	 */
 	protected $accountFactory;
 
 	/**
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthClientRepository
 	 */
 	protected $clientRepository;
 
 	/**
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthScopeRepository
 	 */
 	protected $scopeRepository;

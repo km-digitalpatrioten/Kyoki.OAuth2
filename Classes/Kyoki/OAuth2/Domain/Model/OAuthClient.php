@@ -10,17 +10,17 @@ namespace Kyoki\OAuth2\Domain\Model;
  *                                                                        *
  *                                                                        */
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * An OAuth consumer
  *
- * @FLOW3\Entity
+ * @Flow\Entity
  */
 class OAuthClient {
 	/**
 	 * @ORM\Id
-	 * @FLOW3\Identity
+	 * @Flow\Identity
 	 * @var string
 	 */
 	protected $clientId;
@@ -43,7 +43,7 @@ class OAuthClient {
 	/**
 	 * You are authenticated as this account user when you request a new token
 	 *
-	 * @var \TYPO3\FLOW3\Security\Account
+	 * @var \TYPO3\Flow\Security\Account
 	 * @ORM\ManyToOne
 	 */
 	protected $account;
@@ -51,8 +51,8 @@ class OAuthClient {
 
 	// TODO party as constructor parameter???
 	public function __construct($account,$description, $redirectUri) {
-		$clientId = sha1(bin2hex(\TYPO3\FLOW3\Utility\Algorithms::generateRandomBytes(96)));
-		$secret = sha1(bin2hex(\TYPO3\FLOW3\Utility\Algorithms::generateRandomBytes(96)));
+		$clientId = sha1(bin2hex(\TYPO3\Flow\Utility\Algorithms::generateRandomBytes(96)));
+		$secret = sha1(bin2hex(\TYPO3\Flow\Utility\Algorithms::generateRandomBytes(96)));
 		$this->setSecret($secret);
 		$this->clientId = $clientId;
 		$this->setDescription($description);

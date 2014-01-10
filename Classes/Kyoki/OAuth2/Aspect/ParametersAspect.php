@@ -11,12 +11,12 @@ namespace Kyoki\OAuth2\Aspect;
  *                                                                        *
  *                                                                        */
  
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Exception\OAuthException;
  
 /**
  * This Aspect is responsible os some parameters validation, specially related to grant types
- * @FLOW3\Aspect
+ * @Flow\Aspect
  */
 class ParametersAspect {
 
@@ -31,8 +31,8 @@ class ParametersAspect {
 	const GRANTTYPE_AUTHCODE = 'authorization_code';
 
 	/**
-	 * @var \TYPO3\FLOW3\Security\Context
-	 * @FLOW3\Inject
+	 * @var \TYPO3\Flow\Security\Context
+	 * @Flow\Inject
 	 */
 	protected $securityContext;
 
@@ -40,7 +40,7 @@ class ParametersAspect {
 	 * PointCut token endpoint
 	 * OAuth Token endpoint
 	 *
-	 * @FLOW3\Pointcut("method(Kyoki\OAuth2\Controller\TokenController->tokenAction())")
+	 * @Flow\Pointcut("method(Kyoki\OAuth2\Controller\TokenController->tokenAction())")
 	 * @return void
 	 */
 	public function tokenParameters() {
@@ -50,7 +50,7 @@ class ParametersAspect {
 	 * PointCut token endpoint
 	 * OAuth access grant endpoint
 	 *
-	 * @FLOW3\Pointcut("method(Kyoki\OAuth2\Controller\OAuthController->grantAction())")
+	 * @Flow\Pointcut("method(Kyoki\OAuth2\Controller\OAuthController->grantAction())")
 	 * @return void
 	 */
 	public function allOAuthControllerMethods() {
@@ -60,11 +60,11 @@ class ParametersAspect {
 	 * Validates that the grant_type is refresh_token or authorization_code
 	 * If grant_type then code parameter should be set
 	 *
-	 * @param \TYPO3\FLOW3\Aop\JoinPointInterface $joinPoint
+	 * @param \TYPO3\Flow\Aop\JoinPointInterface $joinPoint
 	 * @return void
-	 * @FLOW3\Before("Kyoki\OAuth2\Aspect\ParametersAspect->tokenParameters")
+	 * @Flow\Before("Kyoki\OAuth2\Aspect\ParametersAspect->tokenParameters")
 	 */
-	public function validateTokenParameters(\TYPO3\FLOW3\Aop\JoinPointInterface $joinPoint) {
+	public function validateTokenParameters(\TYPO3\Flow\Aop\JoinPointInterface $joinPoint) {
 		$arguments = $joinPoint->getMethodArguments();
 
 		if ($arguments['grant_type'] !== self::GRANTTYPE_REFRESHTOKEN && $arguments['grant_type'] !== self::GRANTTYPE_AUTHCODE) {
@@ -79,11 +79,11 @@ class ParametersAspect {
 	/**
 	 * Validates that you are only passing your own OAuthCodes as parameters
 	 *
-	 * @param \TYPO3\FLOW3\Aop\JoinPointInterface $joinPoint
+	 * @param \TYPO3\Flow\Aop\JoinPointInterface $joinPoint
 	 * @return void
-	 * @FLOW3\Before("Kyoki\OAuth2\Aspect\ParametersAspect->allOAuthControllerMethods")
+	 * @Flow\Before("Kyoki\OAuth2\Aspect\ParametersAspect->allOAuthControllerMethods")
 	 */
-	public function validateOAuthCode(\TYPO3\FLOW3\Aop\JoinPointInterface $joinPoint) {
+	public function validateOAuthCode(\TYPO3\Flow\Aop\JoinPointInterface $joinPoint) {
 		if ($joinPoint->isMethodArgument('code')) {
 			/**
 			 * @var $code \Kyoki\OAuth2\Domain\Model\OAuthCode;

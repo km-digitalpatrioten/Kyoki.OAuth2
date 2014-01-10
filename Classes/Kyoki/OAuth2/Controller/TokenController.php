@@ -10,7 +10,7 @@ namespace Kyoki\OAuth2\Controller;
  * of the License, or (at your option) any later version.                 *
  *                                                                        *
  *                                                                        */
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Domain\Model\OAuthCode;
 use Kyoki\OAuth2\Domain\Model\OAuthToken;
 use Kyoki\OAuth2\Exception\OAuthException;
@@ -20,7 +20,7 @@ use Kyoki\OAuth2\Controller\OAuthAbstractController;
  * Token controller for the Kyoki.OAuth2 package
  * Manages de generation of Access Tokens and Refresh Tokens
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
 class TokenController extends OAuthAbstractController {
 
@@ -31,13 +31,13 @@ class TokenController extends OAuthAbstractController {
 
 	/**
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthTokenRepository
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 */
 	protected $oauthTokenRepository;
 
 	/**
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthCodeRepository
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 */
 	protected $oauthCodeRepository;
 

@@ -10,15 +10,15 @@ namespace Kyoki\OAuth2\Domain\Repository;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Domain\Model\OAuthCode;
 
 /**
  * Repository for parties
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class OAuthCodeRepository extends \TYPO3\FLOW3\Persistence\Repository {
+class OAuthCodeRepository extends \TYPO3\Flow\Persistence\Repository {
 
 	/**
 	 * @param OAuthCode $oauthCode

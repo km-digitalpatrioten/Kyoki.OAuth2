@@ -11,17 +11,17 @@ namespace Kyoki\OAuth2\Security\Authentication\Token;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * An authentication token used for simple username and password authentication.
  */
-class ClientIdSecret extends \TYPO3\FLOW3\Security\Authentication\Token\AbstractToken {
+class ClientIdSecret extends \TYPO3\Flow\Security\Authentication\Token\AbstractToken {
 
 	/**
 	 * The username/password credentials
 	 * @var array
-	 * @FLOW3\Transient
+	 * @Flow\Transient
 	 */
 	protected $credentials = array('client_id' => '', 'client_secret' => '');
 
@@ -33,18 +33,18 @@ class ClientIdSecret extends \TYPO3\FLOW3\Security\Authentication\Token\Abstract
 	 *       __authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][username]
 	 *   and __authentication[TYPO3][FLOW3][Security][Authentication][Token][UsernamePassword][password]
 	 *
-	 * @param \TYPO3\FLOW3\Mvc\ActionRequest $actionRequest The current action request
+	 * @param \TYPO3\Flow\Mvc\ActionRequest $actionRequest The current action request
 	 * @return void
 	 */
-	public function updateCredentials(\TYPO3\FLOW3\Mvc\ActionRequest $actionRequest) {
+	public function updateCredentials(\TYPO3\Flow\Mvc\ActionRequest $actionRequest) {
 		$httpRequest = $actionRequest->getHttpRequest();
 		if ($httpRequest->getMethod() !== 'POST') {
 			return;
 		}
 
 		$arguments = $actionRequest->getArguments();
-		$username = \TYPO3\FLOW3\Reflection\ObjectAccess::getPropertyPath($arguments, 'client_id');
-		$password = \TYPO3\FLOW3\Reflection\ObjectAccess::getPropertyPath($arguments, 'client_secret');
+		$username = \TYPO3\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, 'client_id');
+		$password = \TYPO3\Flow\Reflection\ObjectAccess::getPropertyPath($arguments, 'client_secret');
 
 		if (!empty($username) && !empty($password)) {
 			$this->credentials['client_id'] = $username;

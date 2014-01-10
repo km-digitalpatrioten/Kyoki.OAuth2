@@ -7,7 +7,7 @@ namespace Kyoki\OAuth2\Tests\Unit\Security\Authentication\Token;
  * Time: 14:04
  * To change this template use File | Settings | File Templates.
  */
-class ClientIdSecretTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
+class ClientIdSecretTest extends \TYPO3\Flow\Tests\UnitTestCase {
 	const CLIENT_ID = 'AAAAAAAAAAA';
 	const CLIENT_SECRET = 'BBBBBBBBBB';
 
@@ -15,10 +15,10 @@ class ClientIdSecretTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function haveCredentialsByPost() {
-		$mockHttpRequest = $this->getMock('TYPO3\FLOW3\Http\Request', array(), array(),'',FALSE);
+		$mockHttpRequest = $this->getMock('TYPO3\Flow\Http\Request', array(), array(),'',FALSE);
 		$mockHttpRequest->expects($this->once())->method('getMethod')->will($this->returnValue('POST'));
 
-		$mockActionRequest = $this->getMock('TYPO3\FLOW3\Mvc\ActionRequest', array(), array(),'',FALSE);
+		$mockActionRequest = $this->getMock('TYPO3\Flow\Mvc\ActionRequest', array(), array(),'',FALSE);
 		$mockActionRequest->expects($this->once())->method('getHttpRequest')->will($this->returnValue($mockHttpRequest));
 		$mockActionRequest->expects($this->once())->method('getArguments')
 			->will($this->returnValue(array('client_id' => self::CLIENT_ID, 'client_secret' => self::CLIENT_SECRET)));
@@ -38,10 +38,10 @@ class ClientIdSecretTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 	public function notAuthenticationWithoutPost() {
 		$httpMethods = array('GET','PUT');
 		foreach ($httpMethods as $method) {
-			$mockHttpRequest = $this->getMock('TYPO3\FLOW3\Http\Request', array(), array(),'',FALSE);
+			$mockHttpRequest = $this->getMock('TYPO3\Flow\Http\Request', array(), array(),'',FALSE);
 			$mockHttpRequest->expects($this->once())->method('getMethod')->will($this->returnValue($method));
 
-			$mockActionRequest = $this->getMock('TYPO3\FLOW3\Mvc\ActionRequest', array(), array(),'',FALSE);
+			$mockActionRequest = $this->getMock('TYPO3\Flow\Mvc\ActionRequest', array(), array(),'',FALSE);
 			$mockActionRequest->expects($this->once())->method('getHttpRequest')->will($this->returnValue($mockHttpRequest));
 
 

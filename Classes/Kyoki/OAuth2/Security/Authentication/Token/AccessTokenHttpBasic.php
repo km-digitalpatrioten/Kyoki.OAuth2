@@ -1,6 +1,6 @@
 <?php
 namespace Kyoki\OAuth2\Security\Authentication\Token;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /*                                                                        *
  * This script belongs to the Kyoki.OAuth2 package.                        *
@@ -21,7 +21,7 @@ class AccessTokenHttpBasic extends ClientIdSecret {
 	/**
 	 * The username/password credentials
 	 * @var array
-	 * @FLOW3\Transient
+	 * @Flow\Transient
 	 */
 	protected $credentials = array('access_token' => '');
 
@@ -35,10 +35,10 @@ class AccessTokenHttpBasic extends ClientIdSecret {
 	 * Sets the authentication status to AUTHENTICATION_NEEDED, if the header has been
 	 * sent, to NO_CREDENTIALS_GIVEN if no authorization header was there.
 	 *
-	 * @param \TYPO3\FLOW3\Mvc\ActionRequest $actionRequest The current action request instance
+	 * @param \TYPO3\Flow\Mvc\ActionRequest $actionRequest The current action request instance
 	 * @return void
 	 */
-	public function updateCredentials(\TYPO3\FLOW3\Mvc\ActionRequest $actionRequest) {
+	public function updateCredentials(\TYPO3\Flow\Mvc\ActionRequest $actionRequest) {
 		$headers = array();
 		if (function_exists('apache_request_headers')) {
 			$headers = apache_request_headers();

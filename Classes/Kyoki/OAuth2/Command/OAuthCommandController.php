@@ -9,7 +9,7 @@ namespace Kyoki\OAuth2\Command;
  * of the License, or (at your option) any later version.                 *
  *                                                                        *
  *                                                                        */
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Domain\Model\OAuthClient;
 use Kyoki\OAuth2\Domain\Model\OAuthScope;
 
@@ -18,31 +18,31 @@ use Kyoki\OAuth2\Domain\Model\OAuthScope;
  *   - create an OAuthScope
  *   - create an OAuthClient
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class OAuthCommandController extends \TYPO3\FLOW3\Cli\CommandController {
+class OAuthCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 	/**
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthClientRepository
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 */
 	protected $oauthClientRepository;
 
 	/**
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthScopeRepository
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 */
 	protected $oauthScopeRepository;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\AccountRepository
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\AccountRepository
 	 */
 	protected $accountRepository;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Persistence\PersistenceManagerInterface
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Persistence\PersistenceManagerInterface
 	 */
 	protected $persistenceManager;
 

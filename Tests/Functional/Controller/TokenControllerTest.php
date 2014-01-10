@@ -7,8 +7,8 @@ namespace Kyoki\OAuth2\Tests\Functional\Controller;
  * Time: 10:43
  * To change this template use File | Settings | File Templates.
  */
-use TYPO3\FLOW3\Http\Client\Browser;
-use TYPO3\FLOW3\Mvc\Routing\Route;
+use TYPO3\Flow\Http\Client\Browser;
+use TYPO3\Flow\Mvc\Routing\Route;
 use Kyoki\OAuth2\Domain\Model\OAuthClient;
 use Kyoki\OAuth2\Domain\Model\OAuthCode;
 use Kyoki\OAuth2\Domain\Model\OAuthToken;
@@ -16,7 +16,7 @@ use Kyoki\OAuth2\Domain\Model\OAuthScope;
 use TYPO3\Party\Domain\Model\Person;
 use TYPO3\Party\Domain\Model\PersonName;
 
-class TokenControllerTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
+class TokenControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * @var boolean

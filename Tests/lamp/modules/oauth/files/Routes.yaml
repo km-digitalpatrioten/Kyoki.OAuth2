@@ -42,4 +42,4 @@
     '@format': 'html'
   subRoutes:
     FLOW3Subroutes:
-      package: TYPO3.FLOW3
+      package: TYPO3.Flow

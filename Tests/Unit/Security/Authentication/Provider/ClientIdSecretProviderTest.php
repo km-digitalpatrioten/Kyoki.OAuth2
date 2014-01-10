@@ -7,7 +7,7 @@ namespace Kyoki\OAuth2\Tests\Unit\Security\Authentication\Provider;
  * Time: 10:09
  * To change this template use File | Settings | File Templates.
  */
-class ClientIdSecretProviderTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
+class ClientIdSecretProviderTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	const CLIENT_ID = '11111111';
 	const CLIENT_SECRET = '2222222';
@@ -34,7 +34,7 @@ class ClientIdSecretProviderTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 	 */
 	public function authenticatingClientIdSecret($mockToken) {
 
-		$mockAccount = $this->getMock('TYPO3\FLOW3\Security\Account', array(), array(), '', FALSE);
+		$mockAccount = $this->getMock('TYPO3\Flow\Security\Account', array(), array(), '', FALSE);
 
 		$mockOAuthClient = $this->getMock('Kyoki\OAuth2\Domain\Model\OAuthClient',array(),array(),'',FALSE);
 	    $mockOAuthClient->expects($this->once())->method('getAccount')->will($this->returnValue($mockAccount));
@@ -46,7 +46,7 @@ class ClientIdSecretProviderTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 		$mockOAuthClientRepository->expects($this->once())->method('findByIdentifier')->with(self::CLIENT_ID)->will($this->returnValue($mockOAuthClient));
 
 		$mockToken->expects($this->once())->method('getCredentials')->will($this->returnValue(array('client_id' => self::CLIENT_ID, 'client_secret' => self::CLIENT_SECRET)));
-		$mockToken->expects($this->once())->method('setAuthenticationStatus')->with(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+		$mockToken->expects($this->once())->method('setAuthenticationStatus')->with(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
 		$mockToken->expects($this->once())->method('setAccount')->with($mockAccount);
 
 		$clientSecretProvider = $this->getAccessibleMock('Kyoki\OAuth2\Security\Authentication\Provider\ClientIdSecretProvider', array('dummy'), array('myProvider', array()));

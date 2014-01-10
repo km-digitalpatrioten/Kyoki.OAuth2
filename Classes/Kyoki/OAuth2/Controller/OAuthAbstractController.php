@@ -11,32 +11,32 @@ namespace Kyoki\OAuth2\Controller;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use Kyoki\OAuth2\Exception\OAuthException;
 
 /**
  * Abstract class for controllers
  * It is used to manage exceptions
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-abstract class OAuthAbstractController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+abstract class OAuthAbstractController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * Mainly for managin extensions
 	 *
-	 * @param \TYPO3\FLOW3\Mvc\RequestInterface $request
-	 * @param \TYPO3\FLOW3\Mvc\ResponseInterface $response
+	 * @param \TYPO3\Flow\Mvc\RequestInterface $request
+	 * @param \TYPO3\Flow\Mvc\ResponseInterface $response
 	 * @return void
 	 */
-	public function processRequest(\TYPO3\FLOW3\Mvc\RequestInterface $request, \TYPO3\FLOW3\Mvc\ResponseInterface $response) {
+	public function processRequest(\TYPO3\Flow\Mvc\RequestInterface $request, \TYPO3\Flow\Mvc\ResponseInterface $response) {
 		try {
 			parent::processRequest($request, $response);
-		} catch (\TYPO3\FLOW3\Mvc\Exception\RequiredArgumentMissingException $ex) {
+		} catch (\TYPO3\Flow\Mvc\Exception\RequiredArgumentMissingException $ex) {
 			$this->setErrorResponse($response,$ex->getMessage());
 		} catch (OAuthException $ex) {
 			$this->setErrorResponse($response,$ex->getMessage());
-		} catch (\TYPO3\FLOW3\Property\Exception $ex) {
+		} catch (\TYPO3\Flow\Property\Exception $ex) {
 			$this->setErrorResponse($response,'Exception while property mapping');
 		}
 	}
@@ -47,15 +47,15 @@ abstract class OAuthAbstractController extends \TYPO3\FLOW3\Mvc\Controller\Actio
 	 * @param ResponseInterface $response
 	 * @param $message
 	 */
-	private function setErrorResponse(\TYPO3\FLOW3\Mvc\ResponseInterface $response, $message) {
+	private function setErrorResponse(\TYPO3\Flow\Mvc\ResponseInterface $response, $message) {
 		$response->setContent(json_encode(
 			array(
 				'error' => 'server_error',
 				'error_message' => $message
 			)));
-		if ($response instanceof \TYPO3\FLOW3\Http\Response) {
+		if ($response instanceof \TYPO3\Flow\Http\Response) {
 			/**
-			 * @var $response \TYPO3\FLOW3\Http\Response
+			 * @var $response \TYPO3\Flow\Http\Response
 			 */
 			$response->setHeader('Content-Type', 'application/json');
 			$response->setStatus(500);

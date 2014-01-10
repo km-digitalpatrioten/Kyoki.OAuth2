@@ -13,7 +13,7 @@ TYPO3:
   FLOW3:
     security:
       authorization:
-          accessDecisionVoters: [TYPO3\FLOW3\Security\Authorization\Voter\Policy, Kyoki\OAuth2\Security\Authorization\Voter\Policy]
+          accessDecisionVoters: [TYPO3\Flow\Security\Authorization\Voter\Policy, Kyoki\OAuth2\Security\Authorization\Voter\Policy]
       authentication:
         providers:
 # Provider to secure the token endpoint

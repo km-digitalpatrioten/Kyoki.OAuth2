@@ -11,18 +11,18 @@ namespace Kyoki\OAuth2\Security\Authentication\Provider;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * An authentication provider that authenticates
- * TYPO3\FLOW3\Security\Authentication\Token\UsernamePassword tokens.
+ * TYPO3\Flow\Security\Authentication\Token\UsernamePassword tokens.
  * The accounts are stored in the Content Repository.
  */
-class ClientIdSecretProvider extends \TYPO3\FLOW3\Security\Authentication\Provider\AbstractProvider {
+class ClientIdSecretProvider extends \TYPO3\Flow\Security\Authentication\Provider\AbstractProvider {
 
 	/**
 	 * @var \Kyoki\OAuth2\Domain\Repository\OAuthClientRepository
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 */
 	protected $oauthClientRepository;
 
@@ -39,14 +39,14 @@ class ClientIdSecretProvider extends \TYPO3\FLOW3\Security\Authentication\Provid
 	/**
 	 * Sets isAuthenticated to TRUE for all tokens.
 	 *
-	 * @param \TYPO3\FLOW3\Security\Authentication\TokenInterface $authenticationToken The token to be authenticated
+	 * @param \TYPO3\Flow\Security\Authentication\TokenInterface $authenticationToken The token to be authenticated
 	 * @return void
-	 * @throws \TYPO3\FLOW3\Security\Exception\UnsupportedAuthenticationTokenException
-	 * @FLOW3\Session(autoStart=true)
+	 * @throws \TYPO3\Flow\Security\Exception\UnsupportedAuthenticationTokenException
+	 * @Flow\Session(autoStart=true)
 	 */
-	public function authenticate(\TYPO3\FLOW3\Security\Authentication\TokenInterface $authenticationToken) {
+	public function authenticate(\TYPO3\Flow\Security\Authentication\TokenInterface $authenticationToken) {
 		if (!($authenticationToken instanceof \Kyoki\OAuth2\Security\Authentication\Token\ClientIdSecret)) {
-			throw new \TYPO3\FLOW3\Security\Exception\UnsupportedAuthenticationTokenException('This provider cannot authenticate the given token.', 1217339840);
+			throw new \TYPO3\Flow\Security\Exception\UnsupportedAuthenticationTokenException('This provider cannot authenticate the given token.', 1217339840);
 		}
 
 		$credentials = $authenticationToken->getCredentials();
@@ -61,13 +61,13 @@ class ClientIdSecretProvider extends \TYPO3\FLOW3\Security\Authentication\Provid
 
 		if (is_object($oauthClient)) {
 			if ($oauthClient->getSecret() == $credentials['client_secret']) {
-				$authenticationToken->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+				$authenticationToken->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
 				$authenticationToken->setAccount($oauthClient->getAccount());
 			} else {
-				$authenticationToken->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::WRONG_CREDENTIALS);
+				$authenticationToken->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::WRONG_CREDENTIALS);
 			}
-		} elseif ($authenticationToken->getAuthenticationStatus() !== \TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL) {
-			$authenticationToken->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::NO_CREDENTIALS_GIVEN);
+		} elseif ($authenticationToken->getAuthenticationStatus() !== \TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL) {
+			$authenticationToken->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::NO_CREDENTIALS_GIVEN);
 		}
 	}
 
