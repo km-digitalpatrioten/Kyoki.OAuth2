@@ -4,7 +4,7 @@ resources:
     Kyoki_OAuth2: 'method(Kyoki\OAuth2\Controller\OAuthController->.*Action())'
     Kyoki_OAuth2_TokenEndpoint: 'method(Kyoki\OAuth2\Controller\TokenController->.*Action())'
 roles:
-  OAuth: null
+  OAuth: []
 acls:
   OAuth:
     methods:

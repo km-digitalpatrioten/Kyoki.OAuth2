@@ -10,7 +10,7 @@ Kyoki:
 # Authorization endpoint is secured by the provider used to authenticate the user
 
 TYPO3:
-  FLOW3:
+  Flow:
     security:
       authorization:
           accessDecisionVoters: [TYPO3\Flow\Security\Authorization\Voter\Policy, Kyoki\OAuth2\Security\Authorization\Voter\Policy]
